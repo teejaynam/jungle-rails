@@ -6,10 +6,16 @@
       <span><%= humanized_money_with_symbol product.price %></span>
     </h1>
   <% end%>
-  <div>
-    <%= button_to add_item_cart_path(product_id: product.id), class: 'btn' ,
-    method: :post do %>
-      <%= fa_icon "shopping-cart", text: 'Add' %> 
-    <% end %>
-  </div>
+
+  <% if product.quantity.zero? %>
+    <div style="width:120px;background-color: red;color: white; padding: 5px; border-radius: 5px; white-space: nowrap; margin: 8px;">SOLD OUT</div>
+  <% else %>
+
+    <div>
+      <%= button_to add_item_cart_path(product_id: product.id), class: 'btn' ,
+      method: :post do %>
+        <%= fa_icon "shopping-cart", text: 'Add' %> 
+      <% end %>
+    </div>
+  <% end %>
 </article>
